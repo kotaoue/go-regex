@@ -192,3 +192,33 @@ func Test_UpperD(t *testing.T) {
 		})
 	}
 }
+
+func Test_Asterisk(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{
+			input:    "Yeah!",
+			expected: true,
+		},
+		{
+			input:    "Yeaaaaaaah!",
+			expected: true,
+		},
+		{
+			input:    "Yeh!",
+			expected: true,
+		},
+		{
+			input:    "YEAH!",
+			expected: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.input, func(t *testing.T) {
+			r := regexp.MustCompile(`Yea*h!`)
+			assert.Equal(t, tt.expected, r.MatchString(tt.input))
+		})
+	}
+}
