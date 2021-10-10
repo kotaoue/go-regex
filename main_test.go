@@ -342,3 +342,29 @@ func Test_MoreThanNAndLessThanM(t *testing.T) {
 		})
 	}
 }
+
+func Test_Question(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{
+			input:    "color",
+			expected: true,
+		},
+		{
+			input:    "colour",
+			expected: true,
+		},
+		{
+			input:    "colur",
+			expected: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.input, func(t *testing.T) {
+			r := regexp.MustCompile(`colou?r`)
+			assert.Equal(t, tt.expected, r.MatchString(tt.input))
+		})
+	}
+}
