@@ -33,3 +33,30 @@ func Test_Dot(t *testing.T) {
 
 	}
 }
+
+func Test_LowerW(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{
+			input:    "This is a pen",
+			expected: true,
+		},
+		{
+			input:    "THAT is a !!!",
+			expected: false,
+		},
+		{
+			input:    "This is a B_2",
+			expected: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.input, func(t *testing.T) {
+			r := regexp.MustCompile(`This is a \w\w\w`)
+			assert.Equal(t, tt.expected, r.MatchString(tt.input))
+		})
+
+	}
+}
