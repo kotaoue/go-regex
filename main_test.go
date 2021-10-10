@@ -464,3 +464,25 @@ func Test_Dollar(t *testing.T) {
 		})
 	}
 }
+
+func Test_LowerB(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{
+			input:    "book",
+			expected: true,
+		},
+		{
+			input:    "bookshelf",
+			expected: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.input, func(t *testing.T) {
+			r := regexp.MustCompile(`\bbook\b`)
+			assert.Equal(t, tt.expected, r.MatchString(tt.input))
+		})
+	}
+}
