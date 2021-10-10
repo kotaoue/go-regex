@@ -368,3 +368,29 @@ func Test_Question(t *testing.T) {
 		})
 	}
 }
+
+func Test_SquareBrackets(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{
+			input:    "Tatsuya",
+			expected: true,
+		},
+		{
+			input:    "tatsuya",
+			expected: true,
+		},
+		{
+			input:    "Katsuya",
+			expected: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.input, func(t *testing.T) {
+			r := regexp.MustCompile(`[Tt]atsuya`)
+			assert.Equal(t, tt.expected, r.MatchString(tt.input))
+		})
+	}
+}
