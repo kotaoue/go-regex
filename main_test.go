@@ -222,3 +222,33 @@ func Test_Asterisk(t *testing.T) {
 		})
 	}
 }
+
+func Test_Plus(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{
+			input:    "Yeah!",
+			expected: true,
+		},
+		{
+			input:    "Yeaaaaaaah!",
+			expected: true,
+		},
+		{
+			input:    "Yeh!",
+			expected: false,
+		},
+		{
+			input:    "YEAH!",
+			expected: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.input, func(t *testing.T) {
+			r := regexp.MustCompile(`Yea+h!`)
+			assert.Equal(t, tt.expected, r.MatchString(tt.input))
+		})
+	}
+}
