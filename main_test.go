@@ -442,3 +442,25 @@ func Test_Caret(t *testing.T) {
 		})
 	}
 }
+
+func Test_Dollar(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{
+			input:    "you are happy",
+			expected: true,
+		},
+		{
+			input:    "happy new year",
+			expected: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.input, func(t *testing.T) {
+			r := regexp.MustCompile(`happy$`)
+			assert.Equal(t, tt.expected, r.MatchString(tt.input))
+		})
+	}
+}
