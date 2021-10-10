@@ -87,3 +87,30 @@ func Test_UpperW(t *testing.T) {
 
 	}
 }
+
+func Test_LowerS(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{
+			input:    "ABCD EFGH",
+			expected: true,
+		},
+		{
+			input:    "ABCDEFGH",
+			expected: false,
+		},
+		{
+			input:    "ABCD EF GH",
+			expected: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.input, func(t *testing.T) {
+			r := regexp.MustCompile(`ABCD\sEFGH`)
+			assert.Equal(t, tt.expected, r.MatchString(tt.input))
+		})
+
+	}
+}
