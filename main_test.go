@@ -519,3 +519,25 @@ func Test_Backreference(t *testing.T) {
 	}
 }
 */
+
+func Test_Escape(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{
+			input:    "gihyo.co.jp",
+			expected: true,
+		},
+		{
+			input:    "gihyo\\.co\\.jp",
+			expected: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.input, func(t *testing.T) {
+			r := regexp.MustCompile(`gihyo\.co\.jp`)
+			assert.Equal(t, tt.expected, r.MatchString(tt.input))
+		})
+	}
+}
