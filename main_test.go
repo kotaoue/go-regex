@@ -30,7 +30,6 @@ func Test_Dot(t *testing.T) {
 			r := regexp.MustCompile(`.... is a pen`)
 			assert.Equal(t, tt.expected, r.MatchString(tt.input))
 		})
-
 	}
 }
 
@@ -57,7 +56,6 @@ func Test_LowerW(t *testing.T) {
 			r := regexp.MustCompile(`This is a \w\w\w`)
 			assert.Equal(t, tt.expected, r.MatchString(tt.input))
 		})
-
 	}
 }
 
@@ -84,7 +82,6 @@ func Test_UpperW(t *testing.T) {
 			r := regexp.MustCompile(`This is a \W\W\W`)
 			assert.Equal(t, tt.expected, r.MatchString(tt.input))
 		})
-
 	}
 }
 
@@ -111,7 +108,6 @@ func Test_LowerS(t *testing.T) {
 			r := regexp.MustCompile(`ABCD\sEFGH`)
 			assert.Equal(t, tt.expected, r.MatchString(tt.input))
 		})
-
 	}
 }
 
@@ -146,6 +142,5 @@ func Test_UpperS(t *testing.T) {
 			r := regexp.MustCompile(`ABCD\SEFGH`)
 			assert.Equal(t, tt.expected, r.MatchString(tt.input))
 		})
-
 	}
 }
