@@ -490,3 +490,32 @@ func Test_UpperB(t *testing.T) {
 		})
 	}
 }
+
+/*
+Go don't have backreference.
+func Test_Backreference(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{
+			input:    "A promise is promise",
+			expected: true,
+		},
+		{
+			input:    "A bargain is bargain",
+			expected: true,
+		},
+		{
+			input:    "A liar is worse",
+			expected: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.input, func(t *testing.T) {
+			r := regexp.MustCompile(`A (\w+) is \1`)
+			assert.Equal(t, tt.expected, r.MatchString(tt.input))
+		})
+	}
+}
+*/
