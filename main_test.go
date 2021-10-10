@@ -144,3 +144,29 @@ func Test_UpperS(t *testing.T) {
 		})
 	}
 }
+
+func Test_LowerD(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{
+			input:    "2021/01/15",
+			expected: true,
+		},
+		{
+			input:    "2021/1/15",
+			expected: false,
+		},
+		{
+			input:    "2021/xx/15",
+			expected: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.input, func(t *testing.T) {
+			r := regexp.MustCompile(`\d\d\d\d/\d\d/\d\d`)
+			assert.Equal(t, tt.expected, r.MatchString(tt.input))
+		})
+	}
+}
