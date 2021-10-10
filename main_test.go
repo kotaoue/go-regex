@@ -312,3 +312,33 @@ func Test_MoreThanN(t *testing.T) {
 		})
 	}
 }
+
+func Test_MoreThanNAndLessThanM(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{
+			input:    "Yeah!",
+			expected: false,
+		},
+		{
+			input:    "Yeaah!",
+			expected: true,
+		},
+		{
+			input:    "Yeaaah!",
+			expected: true,
+		},
+		{
+			input:    "Yeaaaah!",
+			expected: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.input, func(t *testing.T) {
+			r := regexp.MustCompile(`Yea{2,3}h!`)
+			assert.Equal(t, tt.expected, r.MatchString(tt.input))
+		})
+	}
+}
