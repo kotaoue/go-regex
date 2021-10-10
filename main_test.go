@@ -420,3 +420,25 @@ func Test_Pipe(t *testing.T) {
 		})
 	}
 }
+
+func Test_Caret(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{
+			input:    "you are happy",
+			expected: false,
+		},
+		{
+			input:    "happy new year",
+			expected: true,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.input, func(t *testing.T) {
+			r := regexp.MustCompile(`^happy`)
+			assert.Equal(t, tt.expected, r.MatchString(tt.input))
+		})
+	}
+}
