@@ -541,3 +541,29 @@ func Test_Escape(t *testing.T) {
 		})
 	}
 }
+
+func Test_HTML(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{
+			input:    "<br>",
+			expected: true,
+		},
+		{
+			input:    "<a href='https://example.com>example.com</a>'",
+			expected: true,
+		},
+		{
+			input:    "[example.com](https://example.com)",
+			expected: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.input, func(t *testing.T) {
+			r := regexp.MustCompile(`<(".*?"|'.*?'|[^'"])*?>`)
+			assert.Equal(t, tt.expected, r.MatchString(tt.input))
+		})
+	}
+}
