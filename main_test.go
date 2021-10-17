@@ -567,3 +567,29 @@ func Test_HTML(t *testing.T) {
 		})
 	}
 }
+
+func Test_PostalCode(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{
+			input:    "123-0001",
+			expected: true,
+		},
+		{
+			input:    "1230001'",
+			expected: false,
+		},
+		{
+			input:    "1-0001",
+			expected: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.input, func(t *testing.T) {
+			r := regexp.MustCompile(`\d{3}-\d{4}`)
+			assert.Equal(t, tt.expected, r.MatchString(tt.input))
+		})
+	}
+}
