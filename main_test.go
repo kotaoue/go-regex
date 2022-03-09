@@ -619,3 +619,29 @@ func Test_TelephoneNumber(t *testing.T) {
 		})
 	}
 }
+
+func Test_URL(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected bool
+	}{
+		{
+			input:    "http://example.com",
+			expected: true,
+		},
+		{
+			input:    "072-9999-9999'",
+			expected: true,
+		},
+		{
+			input:    "123-0001",
+			expected: false,
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.input, func(t *testing.T) {
+			r := regexp.MustCompile(`0\d{1,4}-\d{1,4}-\d{4}`)
+			assert.Equal(t, tt.expected, r.MatchString(tt.input))
+		})
+	}
+}
